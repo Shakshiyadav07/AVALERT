@@ -90,6 +90,74 @@ export default function App() {
   // Relief & Funding Modules
   const [supplies, setSupplies] = useState({ food: 1840, water: 4200, medicine: 310, shelter: 120 });
   const [funds, setFunds] = useState({ goal: 500000, raised: 342000, donors: 1240 });
+  const [rescueTeams, setRescueTeams] = useState([
+  {
+    id: "RT-01",
+    name: "Alpha Rescue Unit",
+    members: 6,
+    vehicle: "Rescue Van 01",
+    status: "Available",
+    location: "Kanpur Base Camp"
+  },
+  {
+    id: "RT-02",
+    name: "Mountain Response Team",
+    members: 8,
+    vehicle: "Rescue Truck 02",
+    status: "On Mission",
+    location: "Srinagar Sector S-4"
+  },
+  {
+    id: "RT-03",
+    name: "Medical Rescue Unit",
+    members: 5,
+    vehicle: "Ambulance 03",
+    status: "Available",
+    location: "Kanpur Civil Lines"
+  }
+]);
+
+const [rescueCases, setRescueCases] = useState([
+  {
+    id: "SOS-4821",
+    location: "Kanpur Central Debris Zone",
+    type: "Structure Collapse",
+    people: 4,
+    injured: 2,
+    priority: "Critical",
+    status: "Pending",
+    assignedTeam: "Unassigned",
+    details: "People trapped near collapsed market structure.",
+    time: "2 mins ago"
+  },
+  {
+    id: "SOS-4817",
+    location: "Srinagar Avalanche Sector S-4",
+    type: "Avalanche",
+    people: 2,
+    injured: 0,
+    priority: "High",
+    status: "Assigned",
+    assignedTeam: "Mountain Response Team",
+    details: "Two people reported missing after avalanche.",
+    time: "6 mins ago"
+  },
+  {
+    id: "SOS-4809",
+    location: "Kanpur Civil Lines",
+    type: "Medical Emergency",
+    people: 3,
+    injured: 1,
+    priority: "Critical",
+    status: "En Route",
+    assignedTeam: "Medical Rescue Unit",
+    details: "Injured citizen requires urgent medical evacuation.",
+    time: "11 mins ago"
+  }
+]);
+
+const [selectedCase, setSelectedCase] = useState(null);
+const [selectedTeam, setSelectedTeam] = useState("");
 
   // Community Alerts Feed
   const [alerts, setAlerts] = useState([
@@ -191,6 +259,44 @@ export default function App() {
       addLog("AI GPR Payload Received: 2 targets located.");
     }, 2000);
   };
+  const assignRescueTeam = (caseId, teamName) => {
+  if (!teamName) return;
+
+  setRescueCases((prev) =>
+    prev.map((item) =>
+      item.id === caseId
+        ? {
+            ...item,
+            assignedTeam: teamName,
+            status: "Assigned"
+          }
+        : item
+    )
+  );
+
+  setRescueTeams((prev) =>
+    prev.map((team) =>
+      team.name === teamName
+        ? { ...team, status: "On Mission" }
+        : team
+    )
+  );
+
+  addLog(`Team ${teamName} assigned to ${caseId}`);
+  setSelectedTeam("");
+};
+
+const updateRescueStatus = (caseId, status) => {
+  setRescueCases((prev) =>
+    prev.map((item) =>
+      item.id === caseId
+        ? { ...item, status }
+        : item
+    )
+  );
+
+  addLog(`${caseId} status changed to ${status}`);
+};
 
   return (
     <div className="flex h-screen bg-[#060813] text-slate-200 font-sans overflow-hidden">
@@ -522,6 +628,373 @@ export default function App() {
               </div>
             </div>
           )}
+          {/* RESCUE OPERATIONS - MEMBER 2 */}
+{activeTab === "rescue" && (
+  <div className="space-y-6">
+
+    <div className="flex items-center justify-between">
+      <div>
+        <div className="flex items-center gap-3">
+          <Users className="w-8 h-8 text-indigo-400" />
+
+          <h2 className="text-2xl font-black text-white">
+            Rescue Operations Dashboard
+          </h2>
+        </div>
+
+        <p className="text-sm text-slate-400 mt-1">
+          Manage SOS cases, rescue teams and emergency response
+        </p>
+      </div>
+
+      <div className="px-4 py-2 rounded-xl bg-indigo-950/50 border border-indigo-800">
+        <span className="text-xs font-bold text-indigo-300">
+          RESCUE NETWORK ACTIVE
+        </span>
+      </div>
+    </div>
+
+    {/* STATS */}
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+
+      <div className="p-5 rounded-2xl bg-[#090c1b] border border-slate-800">
+        <p className="text-xs text-slate-400 font-bold">
+          Active SOS Cases
+        </p>
+
+        <p className="text-3xl font-black text-white mt-2">
+          {rescueCases.filter(c => c.status !== "Resolved").length}
+        </p>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-[#090c1b] border border-slate-800">
+        <p className="text-xs text-slate-400 font-bold">
+          Critical Cases
+        </p>
+
+        <p className="text-3xl font-black text-red-400 mt-2">
+          {rescueCases.filter(c => c.priority === "Critical").length}
+        </p>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-[#090c1b] border border-slate-800">
+        <p className="text-xs text-slate-400 font-bold">
+          Teams Available
+        </p>
+
+        <p className="text-3xl font-black text-emerald-400 mt-2">
+          {rescueTeams.filter(t => t.status === "Available").length}
+        </p>
+      </div>
+
+      <div className="p-5 rounded-2xl bg-[#090c1b] border border-slate-800">
+        <p className="text-xs text-slate-400 font-bold">
+          Teams On Mission
+        </p>
+
+        <p className="text-3xl font-black text-cyan-400 mt-2">
+          {rescueTeams.filter(t => t.status === "On Mission").length}
+        </p>
+      </div>
+
+    </div>
+
+    {/* SOS + TEAMS */}
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+
+      {/* SOS CASE LIST */}
+      <div className="p-6 rounded-2xl bg-[#090c1b] border border-slate-800">
+
+        <div className="flex items-center justify-between mb-5">
+          <h3 className="text-xl font-black text-white">
+            SOS Cases
+          </h3>
+
+          <span className="px-3 py-1 rounded-lg bg-red-950 text-red-400 border border-red-800 text-xs font-bold">
+            LIVE
+          </span>
+        </div>
+
+        <div className="space-y-3">
+
+          {rescueCases.map((item) => (
+
+            <div
+              key={item.id}
+              className="p-4 rounded-xl bg-slate-900 border border-slate-800"
+            >
+
+              <div className="flex justify-between gap-4">
+
+                <div>
+
+                  <div className="flex items-center gap-2">
+
+                    <span className="font-black text-white">
+                      {item.id}
+                    </span>
+
+                    <span className="px-2 py-1 rounded bg-red-950 text-red-400 text-[10px] font-bold">
+                      {item.priority}
+                    </span>
+
+                  </div>
+
+                  <p className="text-sm text-slate-300 mt-2">
+                    {item.location}
+                  </p>
+
+                  <p className="text-xs text-slate-500 mt-1">
+                    {item.people} People • {item.injured} Injured
+                  </p>
+
+                  <p className="text-xs text-indigo-400 mt-2">
+                    Team: {item.assignedTeam}
+                  </p>
+
+                </div>
+
+                <button
+                  onClick={() => setSelectedCase(item)}
+                  className="h-fit px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold"
+                >
+                  View Case
+                </button>
+
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+      </div>
+
+      {/* TEAMS */}
+      <div className="p-6 rounded-2xl bg-[#090c1b] border border-slate-800">
+
+        <h3 className="text-xl font-black text-white mb-5">
+          Rescue Teams
+        </h3>
+
+        <div className="space-y-3">
+
+          {rescueTeams.map((team) => (
+
+            <div
+              key={team.id}
+              className="p-4 rounded-xl bg-slate-900 border border-slate-800"
+            >
+
+              <div className="flex justify-between">
+
+                <div>
+                  <p className="font-bold text-white">
+                    {team.name}
+                  </p>
+
+                  <p className="text-xs text-slate-500 mt-1">
+                    {team.id} • {team.members} Members
+                  </p>
+                </div>
+
+                <span
+                  className={
+                    team.status === "Available"
+                      ? "text-emerald-400 text-xs"
+                      : "text-cyan-400 text-xs"
+                  }
+                >
+                  ● {team.status}
+                </span>
+
+              </div>
+
+              <div className="mt-3 text-xs text-slate-400 space-y-1">
+                <p>🚑 {team.vehicle}</p>
+                <p>📍 {team.location}</p>
+              </div>
+
+            </div>
+
+          ))}
+
+        </div>
+      </div>
+
+    </div>
+
+    {/* CASE DETAILS */}
+    {selectedCase && (
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <div className="p-6 rounded-2xl bg-[#090c1b] border border-slate-800">
+
+          <h3 className="text-xl font-black text-white">
+            Case Details
+          </h3>
+
+          <div className="mt-5 space-y-4">
+
+            <div>
+              <p className="text-xs text-slate-500">CASE ID</p>
+              <p className="font-bold text-white">
+                {selectedCase.id}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs text-slate-500">LOCATION</p>
+              <p className="font-bold text-white">
+                {selectedCase.location}
+              </p>
+            </div>
+
+            <div>
+              <p className="text-xs text-slate-500">
+                EMERGENCY TYPE
+              </p>
+
+              <p className="font-bold text-white">
+                {selectedCase.type}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+
+              <div className="p-3 rounded-xl bg-slate-900">
+                <p className="text-xs text-slate-500">
+                  PEOPLE
+                </p>
+
+                <p className="text-xl font-black text-white">
+                  {selectedCase.people}
+                </p>
+              </div>
+
+              <div className="p-3 rounded-xl bg-slate-900">
+                <p className="text-xs text-slate-500">
+                  INJURED
+                </p>
+
+                <p className="text-xl font-black text-red-400">
+                  {selectedCase.injured}
+                </p>
+              </div>
+
+            </div>
+
+            <div className="p-4 rounded-xl bg-slate-900">
+              <p className="text-xs text-slate-500">
+                DESCRIPTION
+              </p>
+
+              <p className="text-sm text-slate-300 mt-2">
+                {selectedCase.details}
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* TEAM ASSIGNMENT */}
+        <div className="p-6 rounded-2xl bg-[#090c1b] border border-slate-800">
+
+          <h3 className="text-xl font-black text-white">
+            Team Assignment
+          </h3>
+
+          <p className="text-xs text-slate-500 mt-4">
+            Current Team
+          </p>
+
+          <p className="text-sm font-bold text-indigo-400 mt-1">
+            {selectedCase.assignedTeam}
+          </p>
+
+          <select
+            value={selectedTeam}
+            onChange={(e) => setSelectedTeam(e.target.value)}
+            className="w-full mt-5 bg-slate-900 border border-slate-800 rounded-xl p-3 text-white"
+          >
+
+            <option value="">
+              Select Rescue Team
+            </option>
+
+            {rescueTeams
+              .filter(team => team.status === "Available")
+              .map(team => (
+                <option key={team.id} value={team.name}>
+                  {team.name}
+                </option>
+              ))}
+
+          </select>
+
+          <button
+            onClick={() =>
+              assignRescueTeam(selectedCase.id, selectedTeam)
+            }
+            disabled={!selectedTeam}
+            className="w-full mt-3 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 disabled:bg-slate-800 text-white font-bold"
+          >
+            ASSIGN TEAM
+          </button>
+
+          {/* RESCUE STATUS */}
+          <p className="text-sm font-bold text-slate-300 mt-6">
+            Rescue Status
+          </p>
+
+          <div className="grid grid-cols-2 gap-2 mt-3">
+
+            {[
+              "Pending",
+              "Assigned",
+              "En Route",
+              "Rescue Active",
+              "Resolved"
+            ].map((status) => (
+
+              <button
+                key={status}
+                onClick={() =>
+                  updateRescueStatus(
+                    selectedCase.id,
+                    status
+                  )
+                }
+                className={`p-2 rounded-lg text-xs font-bold ${
+                  selectedCase.status === status
+                    ? "bg-indigo-600 text-white"
+                    : "bg-slate-900 text-slate-400"
+                }`}
+              >
+                {status}
+              </button>
+
+            ))}
+
+          </div>
+
+          <button
+            onClick={() => setSelectedCase(null)}
+            className="w-full mt-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold"
+          >
+            CLOSE CASE
+          </button>
+
+        </div>
+
+      </div>
+
+    )}
+
+  </div>
+)}
 
           {/* RELIEF & RESOURCES */}
           {activeTab === "relief" && (
