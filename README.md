@@ -12,13 +12,14 @@ Styling & Motion: Tailwind CSS v4 + Framer Motion (Fluid, responsive, accessible
 State Management: React Context API (AppContext.jsx)
 Vector Graphics: Custom High-DPI SVG Icon System
 
-<p align="center">
-  <img src="./frontend/src/assets/hero.png" alt="AVALERT Banner" width="100%" />
-</p>
+💭Dramatic Snow Mountain & Rescue Vibe
 
 <p align="center">
-  <img src="https://img.shields.io/badge/React.js-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
-  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge" />
+  <img src="https://images.unsplash.com/photo-1551524559-8af4e6624178?q=80&w=1200&auto=format&fit=crop" alt="Avalanche Disaster Rescue Banner" width="100%" />
+</p>
+
+Snowy Peak / Winter Emergency Operations
+
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200&auto=format&fit=crop" alt="Mountain Avalanche Banner" width="100%" />
 </p>
