@@ -48,9 +48,10 @@ Disaster response in high-risk zones is often hampered by:
 
 ### 🆘 The Reality of Disasters: Why We Build
 <p align="center">
-  <img src="./frontend/src/assets/image_bc567c.jpg" alt="Disaster Impact" width="48%" />
-  <img src="./frontend/src/assets/image_bc5640.jpg" alt="Rescue Operations" width="48%" />
+frontend/src/assets/Screenshot 2026-08-16 152914.png
+frontend/src/assets/Screenshot 2026-08-16 152932.png
 </p>
+
 *Every second lost in coordination is a life at risk. These visuals represent the ground reality of the disasters that AVALERT aims to mitigate.*
 
 ---
