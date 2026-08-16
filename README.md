@@ -46,6 +46,13 @@ Disaster response in high-risk zones is often hampered by:
 *   **State Control:** Efficient global state management via React Context API to handle complex data streams.
 *   **Intelligence:** A custom `sosEngine.js` backend logic that handles incoming distress requests with high priority.
 
+### 🆘 The Reality of Disasters: Why We Build
+<p align="center">
+  <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?q=80&w=600&auto=format&fit=crop" alt="Rescue Operations" width="48%" />
+  <img src="https://images.unsplash.com/photo-1584282479222-6b94157a9f73?q=80&w=600&auto=format&fit=crop" alt="Flood Impact" width="48%" />
+</p>
+*Every second lost in coordination is a life at risk. These visuals represent the ground reality of the 2026 flood and avalanche response operations.*
+
 ---
 
 ## 🚀 Getting Started
