@@ -47,11 +47,12 @@ Disaster response in high-risk zones is often hampered by:
 *   **Intelligence:** A custom `sosEngine.js` backend logic that handles incoming distress requests with high priority.
 
 ### 🆘 The Reality of Disasters: Why We Build
+### 🆘 The Reality of Disasters: Why We Build
 <p align="center">
-frontend/src/assets/Screenshot 2026-08-16 152914.png
-frontend/src/assets/Screenshot 2026-08-16 152932.png
+  <img src="frontend/src/assets/Screenshot%202026-08-16%20152914.png" alt="Disaster Impact" width="48%" />
+  <img src="frontend/src/assets/Screenshot%202026-08-16%20152932.png" alt="Rescue Operations" width="48%" />
 </p>
-
+*Every second lost in coordination is a life at risk. These visuals represent the ground reality of the disasters that AVALERT aims to mitigate.*
 *Every second lost in coordination is a life at risk. These visuals represent the ground reality of the disasters that AVALERT aims to mitigate.*
 
 ---
