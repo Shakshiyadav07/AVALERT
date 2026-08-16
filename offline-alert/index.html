@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AVALERT - Offline Alert System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🚨 AVALERT</h1>
+        <p>Offline + Community Alert Module</p>
+
+        <div id="networkStatus" class="online">
+            🟢 Online
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- SOS SECTION -->
+        <section class="card sos-section">
+
+            <h2>🆘 Emergency SOS</h2>
+
+            <p>
+                Send an SOS even when there is no internet connection.
+            </p>
+
+            <button id="sosButton">
+                SEND SOS
+            </button>
+
+            <p id="sosMessage"></p>
+
+        </section>
+
+
+        <!-- QUEUE SECTION -->
+        <section class="card">
+
+            <h2>📦 Local SOS Queue</h2>
+
+            <p>
+                SOS messages waiting to be delivered:
+            </p>
+
+            <div id="queueCount">
+                0
+            </div>
+
+            <button id="syncButton">
+                🔄 Sync Queue
+            </button>
+
+            <div id="queueList"></div>
+
+        </section>
+
+
+        <!-- COMMUNITY ALERTS -->
+        <section class="card">
+
+            <h2>📢 Community Alerts</h2>
+
+            <div id="alertsContainer">
+
+                <div class="alert">
+                    <h3>⚠️ Flood Warning</h3>
+
+                    <p>
+                        Heavy rainfall reported in the nearby area.
+                    </p>
+
+                    <button onclick="verifyAlert(this)">
+                        Verify Alert
+                    </button>
+
+                    <span class="verification">
+                        Not Verified
+                    </span>
+                </div>
+
+
+                <div class="alert">
+
+                    <h3>🏔️ Landslide Warning</h3>
+
+                    <p>
+                        Possible landslide detected near the hill region.
+                    </p>
+
+                    <button onclick="verifyAlert(this)">
+                        Verify Alert
+                    </button>
+
+                    <span class="verification">
+                        Not Verified
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            AVALERT — Avalanche and Disaster Rescue Intelligence Platform
+        </p>
+
+    </footer>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>

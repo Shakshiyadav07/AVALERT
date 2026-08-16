@@ -1,0 +1,179 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+    color: #222;
+}
+
+
+header {
+    background: #111827;
+    color: white;
+    text-align: center;
+    padding: 25px;
+}
+
+header h1 {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+header p {
+    margin-bottom: 15px;
+}
+
+
+#networkStatus {
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.online {
+    background: #166534;
+}
+
+.offline {
+    background: #991b1b;
+}
+
+
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.card h2 {
+    margin-bottom: 12px;
+}
+
+
+.sos-section {
+    text-align: center;
+}
+
+
+#sosButton {
+    margin-top: 20px;
+    padding: 18px 35px;
+
+    background: #dc2626;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+#sosButton:hover {
+    background: #b91c1c;
+}
+
+
+#sosMessage {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+#queueCount {
+    font-size: 35px;
+    font-weight: bold;
+
+    margin: 15px 0;
+}
+
+
+#syncButton {
+    padding: 10px 20px;
+
+    background: #2563eb;
+    color: white;
+
+    border: none;
+    border-radius: 7px;
+
+    cursor: pointer;
+}
+
+
+#queueList {
+    margin-top: 20px;
+}
+
+
+.queue-item {
+    background: #f3f4f6;
+    padding: 12px;
+    margin-top: 8px;
+    border-radius: 7px;
+}
+
+
+.alert {
+    border-left: 5px solid #f59e0b;
+
+    background: #fff7ed;
+
+    padding: 15px;
+
+    margin-top: 15px;
+
+    border-radius: 7px;
+}
+
+
+.alert h3 {
+    margin-bottom: 8px;
+}
+
+
+.alert button {
+    margin-top: 12px;
+
+    padding: 7px 12px;
+
+    border: none;
+    border-radius: 5px;
+
+    background: #2563eb;
+    color: white;
+
+    cursor: pointer;
+}
+
+
+.verification {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+
+footer {
+    text-align: center;
+    padding: 25px;
+
+    color: #666;
+}
