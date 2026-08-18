@@ -18,7 +18,7 @@ import {
   AlertTriangle,
   Plus,
   CheckCircle2,
-  Navigation,d
+  Navigation,
   Activity,
   HeartPulse,
   DollarSign,
