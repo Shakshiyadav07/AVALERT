@@ -18,7 +18,7 @@ import {
   AlertTriangle,
   Plus,
   CheckCircle2,
-  Navigation,
+  Navigation,d
   Activity,
   HeartPulse,
   DollarSign,
@@ -30,6 +30,7 @@ import confetti from "canvas-confetti";
 import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import MeshTriageSimulator from './components/MeshTriageSimulator';
 
 // Leaflet Default Marker Repair
 delete L.Icon.Default.prototype._getIconUrl;
