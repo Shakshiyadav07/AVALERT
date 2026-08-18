@@ -1,0 +1,30 @@
+# Environment variables
+.env
+**/.env
+.env.*
+
+# Python virtual environments
+.venv/
+**/.venv/
+venv/
+**/venv/
+
+# Python cache
+__pycache__/
+**/__pycache__/
+*.pyc
+
+# Node
+node_modules/
+**/node_modules/
+
+# Build files
+dist/
+build/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
