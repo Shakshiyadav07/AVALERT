@@ -81,7 +81,7 @@ export default function MeshTriageSimulator() {
             className={`mt-4 w-full py-3 rounded-lg font-bold transition flex items-center justify-center gap-2 ${
               simulating 
                 ? 'bg-slate-700 text-slate-400 cursor-not-allowed' 
-                : 'bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white shadow-lg shadow-red-900/50'
+                : 'bg-linear-to-r from-red-600 to-orange-600 hover:from-red-500 hover:to-orange-500 text-white shadow-lg shadow-red-900/50'
             }`}
           >
             {simulating ? <Activity className="animate-spin" size={18} /> : <ShieldAlert size={18} />}
